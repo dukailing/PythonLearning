@@ -1,0 +1,2 @@
+TypeError: 'str' object is not callable
+在python中内置了很多的函数和类，在自己定义变量的时候，切记不要覆盖或者和他们的名字重复。
