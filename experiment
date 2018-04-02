@@ -1,0 +1,49 @@
+#上机实验一:冒泡排序
+SList=[5,6,3,4,8,1,9,0,2]
+for i in range(0,len(SList)):
+    for j in range(i+1,len(SList)):
+        if SList[i] > SList[j]:
+            SList[i], SList[j ] = SList[j],SList[i]
+print SList;
+#上机实验二数据字典：
+import json;
+May={};
+for key in range(31):
+    i=160501+key;
+    May[str(i)]=0;
+May['160501']=1;
+May['160502']=1;
+May['160503']=1;
+May['160509']=1;
+May['160508']=1;
+f=open('BigData.json','w');#打开文件
+json.dump(May,f);#序列化
+f.close;#关闭文件
+f=open('BigData.json','r');#打开文件
+May=json.load(f);#反序列化
+date1=input('');#输入一个16年5月的日期
+print May[str(date1)];
+
+#上机实验三：
+import  os;
+os.chdir('G:\PythonData\data')
+print os.getcwd()
+print '''文件读写'''
+
+data = []  # 先定义存储数据的总列表，总列表的每个元素都是一个列表，各存储一行数据
+da =[]
+datalast=[]
+fr = open('horseColic.txt')# 打开文件
+# data2=fr.read();#读取文件
+# print data2;
+for line in fr.readlines():  #  r eadlines()返回的是一个字符串列表，每个字符串代表一行原始数据
+    line = line.strip()   # 去掉换行符
+    data_line = line.split('\t') # 通过字符串的制表符\t分隔数据，并且返回一个列表，使用列表存储该行数据
+    datalast.append(data_line[21]);  # 将存储一行数据的列表的最后一位数据也就是第22位添加到总列表中
+    for i in range(21):
+        da.append(data_line[i]);
+    data.append(da);
+    da=[];
+print datalast;  # 输出最后一行的数据
+print data; #输出前21列数据
+fr.close();
