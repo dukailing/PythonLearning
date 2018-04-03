@@ -47,3 +47,12 @@ for line in fr.readlines():  #  r eadlines()返回的是一个字符串列表，
 print datalast;  # 输出最后一行的数据
 print data; #输出前21列数据
 fr.close();
+
+
+#第三章上机实验：递归斐波那契
+def factorial(n):
+    if n <= 1:
+        return n
+    else:
+        return (factorial(n - 1) + factorial(n - 2))
+print factorial(10)
