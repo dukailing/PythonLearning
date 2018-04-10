@@ -5,9 +5,9 @@ for i in range(0,len(SList))[::-1]:#倒序
         if SList[j] > SList[j+1]:
             SList[j], SList[j+1] = SList[j+1],SList[j]
 print SList;
-#上机实验二数据字典：
-import json;
-May={};
+#上机实验二数据字典存放节假日，并用json序列化并保存：
+import json;#引入json
+May={};#定义空字典
 for key in range(31):
     i=160501+key;
     May[str(i)]=0;
@@ -16,7 +16,7 @@ May['160502']=1;
 May['160503']=1;
 May['160509']=1;
 May['160508']=1;
-f=open('BigData.json','w');#打开文件
+f=open('BigData.json','w');#打开文件,如果不存在，则自动创建
 json.dump(May,f);#序列化
 f.close;#关闭文件
 f=open('BigData.json','r');#打开文件
@@ -29,7 +29,7 @@ import  os;
 os.chdir('G:\PythonData\data')
 print os.getcwd()
 print '''文件读写'''
-
+方法一：
 data = []  # 先定义存储数据的总列表，总列表的每个元素都是一个列表，各存储一行数据
 da =[]
 datalast=[]
@@ -48,6 +48,22 @@ print datalast;  # 输出最后一行的数据
 print data; #输出前21列数据
 fr.close();
 
+ 
+老师方法二:
+dataarr=[];
+lablearr=[];
+fr = open('horseColic.txt')# 打开文件
+dt=fr.readline();
+while dt:
+    temp=dt.split('\t')
+    dataarr.append(temp[0:21])
+    lablearr.append(temp[-1].strip('\n'))
+    dt=fr.readline();
+fr.close();
+print lablearr; #输出前21列数据
+print dataarr;  # 输出最后一行的数据
+
+
 
 #第三章上机实验：递归斐波那契
 def factorial(n):
@@ -56,3 +72,65 @@ def factorial(n):
     else:
         return (factorial(n - 1) + factorial(n - 2))
 print factorial(10)
+
+
+#第四章上机实验一
+class Complex:
+    def __init__(self,p1,p2):
+        self.__p1=p1
+        self.__p2=p2;
+        self.result=self.getResult()
+    def getResult(self):
+        self.result=str(self.__p1)+"+"+str(self.__p2)+"i";
+        return self.result;
+    def getP1(self):
+        return self.__p1;
+    def getP2(self):
+        return self.__p2;
+    def show(self):
+      print self.result;
+    def add(self, other):
+        self.__p1+=other.getP1();
+        self.__p2+=other.getP2();
+        self.__result=self.getResult();
+
+c1=Complex(2,3)
+c2=Complex(8,-1)
+c1.add(c2)
+c1.show()
+
+
+#第四章上机实验二
+print'''类的继承'''
+class Shape(object):#Shape抽象基类（object可删除）
+    pass
+class Rectangle(Shape):#长方形类继承Shape
+    def __init__(self,height,width):
+        self.width=width;
+        self.height=height;
+    def getCircumference(self):
+        return 2*(self.width+self.height);
+    def getArea(self):
+        return self.width*self.height;
+class Circle(Shape):#圆形类继承Shape
+    def __init__(self,PI,r):
+        self.PI=PI;
+        self.r=r;
+    def getCircumference(self):
+        return 2*self.r*self.PI;
+    def getArea(self):
+        return self.r*self.r*self.PI;
+class Square(Rectangle):#正方形继承长方形，仅定义构造函数即可，要求不是私有属性
+    def __init__(self,side):
+        self.width=side;
+        self.height=side;
+#测试
+r1=Rectangle(3,4)
+print r1.getCircumference()#14
+print r1.getArea()#12
+s1=Square(3)
+print s1.getArea()#9
+print s1.getCircumference()#12
+c1=Circle(3,3)
+print c1.getCircumference()#18
+print c1.getArea()#27
