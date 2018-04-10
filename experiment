@@ -75,7 +75,7 @@ print factorial(10)
 
 
 #第四章上机实验一
-class Complex:
+class Complex:#实现一个复数类
     def __init__(self,p1,p2):
         self.__p1=p1
         self.__p2=p2;
