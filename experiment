@@ -1,9 +1,9 @@
 #上机实验一:冒泡排序
 SList=[5,6,3,4,8,1,9,0,2]
-for i in range(0,len(SList)):
-    for j in range(i+1,len(SList)):
-        if SList[i] > SList[j]:
-            SList[i], SList[j ] = SList[j],SList[i]
+for i in range(0,len(SList))[::-1]:#倒序
+    for j in range(i):
+        if SList[j] > SList[j+1]:
+            SList[j], SList[j+1] = SList[j+1],SList[j]
 print SList;
 #上机实验二数据字典：
 import json;
